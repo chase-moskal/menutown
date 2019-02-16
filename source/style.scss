@@ -1,0 +1,27 @@
+
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	font-size: 16px;
+	height: 100%;
+	background: #444;
+	color: rgba(255,255,255, 0.7);
+}
+
+.menu-system {
+	.menu-button {
+		display: block;
+		width: 2em;
+		height: 2em;
+		background: rgba(255,255,255, 0.25);
+	}
+	.menu-panel {
+		background: black;
+	}
+}
