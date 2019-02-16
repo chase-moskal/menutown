@@ -15,13 +15,44 @@ html, body {
 }
 
 .menu-system {
-	.menu-button {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+
+	.menu-entry {
 		display: block;
-		width: 2em;
-		height: 2em;
-		background: rgba(255,255,255, 0.25);
+		flex: 0 0 auto;
+
+		& + .menu-entry {
+			margin-left: 0.2em;
+		}
+
+		.menu-button {
+			display: block;
+			border: none;
+			width: 3em;
+			height: 3em;
+			background: rgba(255,255,255, 0.25);
+		}
+
+		.menu-panel {
+			position: absolute;
+			top: 100%;
+			right: 0;
+			width: 480px;
+			padding: 2em;
+			background: rgba(255,255,255, 0.5);
+		}
 	}
-	.menu-panel {
-		background: black;
+}
+
+html.demo {
+	.siteheader {
+		display: flex;
+		background: rgba(255,255,255, 0.1);
+		justify-content: space-between;
+		& > * {
+			flex: 0 0 auto;
+		}
 	}
 }

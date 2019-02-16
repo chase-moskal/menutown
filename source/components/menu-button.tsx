@@ -5,5 +5,5 @@ import {observer} from "mobx-preact"
 export const MenuButton = observer(({onClick}: {
 	onClick: (event: MouseEvent) => void
 }) => (
-	<div className="menu-button" {...{onClick}}></div>
+	<button className="menu-button" {...{onClick}}></button>
 ))
