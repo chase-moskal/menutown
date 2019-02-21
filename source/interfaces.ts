@@ -1,6 +1,7 @@
 
-import {Component, ComponentChildren} from "preact"
+import {ComponentChildren} from "preact"
 
+import {ScrollMarmot} from "./stores/scroll-marmot"
 import {MenuAccountant} from "./stores/menu-accountant"
 
 export type MenuBodyStore = any
@@ -11,6 +12,7 @@ export interface MenuAccount {
 }
 
 export interface MenuSystemProps {
+	scrollMarmot: ScrollMarmot
 	menuAccountant: MenuAccountant
 }
 
@@ -23,4 +25,7 @@ export interface MenuEntryProps {
 export interface InstallMenuSystemOptions {
 	element: Element
 	menuAccounts: MenuAccount[]
+	children?: ComponentChildren
+	scrollMarmot?: ScrollMarmot
+	menuAccountant?: MenuAccountant
 }

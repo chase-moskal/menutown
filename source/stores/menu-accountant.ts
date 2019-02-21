@@ -1,5 +1,5 @@
 
-import {observable, action} from "mobx"
+import {observable, action, computed} from "mobx"
 
 import {MenuAccount} from "../interfaces"
 
@@ -12,12 +12,15 @@ import {MenuAccount} from "../interfaces"
 export class MenuAccountant {
 	@observable menuAccounts: MenuAccount[] = []
 	@observable activeMenuAccount: MenuAccount = null
+	@computed get isActive() {
+		return !!this.activeMenuAccount
+	}
 
 	@action registerMenuAccount(menuAccount: MenuAccount) {
 		this.menuAccounts.push(menuAccount)
 	}
 
-	@action toggleMenuAccount(menuAccount: MenuAccount) {
+	@action setActiveMenuAccount(menuAccount: MenuAccount) {
 		if (this.activeMenuAccount === menuAccount) {
 			this.activeMenuAccount = null
 		}
