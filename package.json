@@ -1,6 +1,6 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.0",
+	"version": "0.0.0-dev.1",
 	"description": "cool preact/mobx menu infrastructure",
 	"main": "index.js",
 	"scripts": {
@@ -29,7 +29,6 @@
 	},
 	"devDependencies": {
 		"@types/jest": "24.0.6",
-		"axx": "0.2.0",
 		"barrelsby": "1.0.2",
 		"browserify": "16.2.3",
 		"envify": "4.1.0",
