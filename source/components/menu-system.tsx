@@ -1,13 +1,11 @@
 
+import {autorun} from "mobx"
 import {h, Component} from "preact"
 import {observer} from "mobx-preact"
-
-import {autorun} from "mobx"
 
 import {MenuSystemProps, MenuAccount} from "../interfaces"
 
 import {MenuEntry} from "./menu-entry"
-import { ScrollMarmot } from "source/stores/scroll-marmot";
 
 @observer
 export class MenuSystem extends Component<MenuSystemProps> {

@@ -1,5 +1,4 @@
 export * from "./interfaces";
-export * from "./mocks";
 export * from "./components/menu-button";
 export * from "./components/menu-entry";
 export * from "./components/menu-panel";

@@ -5,9 +5,8 @@ import {MenuAccount} from "../interfaces"
 
 /**
  * Menu accountant
- * - each menu has its own 'menu account' which is registered with this
- *   'menu accountant' mobx store
- * - this store keeps track of which menu is currently activated
+ * - keep track of which menu account is active
+ * - toggle menu account activity
  */
 export class MenuAccountant {
 	@observable menuAccounts: MenuAccount[] = []

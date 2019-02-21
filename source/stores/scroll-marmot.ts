@@ -1,6 +1,10 @@
 
 import {observable, action} from "mobx"
 
+/**
+ * Track user scrolling position
+ * - has a lock mechanism which halts the tracking
+ */
 export class ScrollMarmot {
 	@observable lock: boolean = false
 	@observable scrollPoint: number = 0
