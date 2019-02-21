@@ -1,20 +1,11 @@
 
-@charset "utf-8";
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html, body {
-	font-size: 16px;
-	height: 100%;
-	background: #444;
-	color: rgba(255,255,255, 0.7);
-}
-
 @mixin menu-system($size, $gapsize: $size / 10) {
+	&, * {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
 	$difsize: $size - ($gapsize * 2);
 
 	position: absolute;
@@ -84,47 +75,6 @@ html, body {
 			max-width: 640px;
 			background: rgba(255,255,255, 0.9);
 			color: rgba(0,0,0, 0.8);
-		}
-	}
-}
-
-html.demo {
-	$headersize: 3.5rem;
-
-	.siteheader {
-		display: flex;
-		background: #555;
-		justify-content: space-between;
-
-		&::after {
-			content: "";
-			width: 6em;
-			height: $headersize;
-			flex: 0 0 auto;
-		}
-
-		& > * {
-			flex: 0 1 auto;
-		}
-
-		& > h1 {
-			padding: 0.2em 3rem;
-		}
-	}
-
-	.menu-system {
-		@include menu-system($headersize, 0.3rem);
-
-		.menu-panel {
-			padding: 2em;
-		}
-	}
-
-	main {
-		padding: 2em 3em;
-
-		p {
-			margin: 1em auto;
 		}
 	}
 }
