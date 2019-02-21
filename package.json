@@ -1,8 +1,9 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.1",
+	"version": "0.0.0-dev.2",
 	"description": "cool preact/mobx menu infrastructure",
-	"main": "index.js",
+	"main": "dist",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"prepare": "run-s clean build test",
 		"clean": "rimraf dist && mkdirp dist",
