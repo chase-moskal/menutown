@@ -12,6 +12,7 @@ import {MenuAccount} from "../interfaces"
 export class MenuAccountant {
 	@observable menuAccounts: MenuAccount[] = []
 	@observable activeMenuAccount: MenuAccount = null
+
 	@computed get isActive() {
 		return !!this.activeMenuAccount
 	}
@@ -20,7 +21,7 @@ export class MenuAccountant {
 		this.menuAccounts.push(menuAccount)
 	}
 
-	@action setActiveMenuAccount(menuAccount: MenuAccount) {
+	@action toggleActiveMenuAccount(menuAccount: MenuAccount) {
 		if (this.activeMenuAccount === menuAccount) {
 			this.activeMenuAccount = null
 		}

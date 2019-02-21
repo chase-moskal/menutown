@@ -67,19 +67,15 @@ export class MenuSystem extends Component<MenuSystemProps> {
 	}
 
 	private readonly handleBlanketClick = () => {
-		const {menuAccountant, scrollMarmot} = this.props
-		menuAccountant.setActiveMenuAccount(null)
-		scrollMarmot.updateScrollPoint()
+		const {menuAccountant} = this.props
+		menuAccountant.toggleActiveMenuAccount(null)
 	}
 
 	private readonly prepareMenuButtonClickHandler = (
 		(menuAccount: MenuAccount) => {
-			const {menuAccountant, scrollMarmot} = this.props
+			const {menuAccountant} = this.props
 			return (event: MouseEvent) => {
-				const wasPreviouslyInactive = !menuAccountant.activeMenuAccount
-				menuAccountant.setActiveMenuAccount(menuAccount)
-				if (wasPreviouslyInactive)
-					scrollMarmot.updateScrollPoint()
+				menuAccountant.toggleActiveMenuAccount(menuAccount)
 			}
 		}
 	)
