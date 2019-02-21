@@ -21,6 +21,7 @@ export class ScrollMarmot {
 	private readonly scrollUpdateEvents = ["scroll", "resize"]
 
 	constructor() {
+		this.updateScrollPoint()
 		for (const event of this.scrollUpdateEvents)
 			window.addEventListener(event, this.handleScrollUpdate)
 	}
