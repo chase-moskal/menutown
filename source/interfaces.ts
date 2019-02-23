@@ -1,9 +1,13 @@
 
 import {ComponentChildren} from "preact"
 
-import {MenuAccount} from "./stores/menu-account"
 import {ScrollMarmot} from "./stores/scroll-marmot"
 import {MenuAccountant} from "./stores/menu-accountant"
+
+export interface MenuAccount {
+	name: string
+	content: JSX.Element
+}
 
 export interface MenuAccountOptions {
 	name: string

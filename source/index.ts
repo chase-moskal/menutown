@@ -6,6 +6,5 @@ export * from "./components/menu-display";
 export * from "./components/menu-panel";
 export * from "./components/menu-system";
 export * from "./routines/install-menu-system";
-export * from "./stores/menu-account";
 export * from "./stores/menu-accountant";
 export * from "./stores/scroll-marmot";

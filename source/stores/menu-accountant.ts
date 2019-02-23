@@ -8,9 +8,8 @@ import {
 	IReactionDisposer
 } from "mobx"
 
-import {MenuAccountantOptions} from "../interfaces"
+import {MenuAccountantOptions, MenuAccount} from "../interfaces"
 
-import {MenuAccount} from "./menu-account"
 import {ScrollMarmot} from "./scroll-marmot"
 
 /**

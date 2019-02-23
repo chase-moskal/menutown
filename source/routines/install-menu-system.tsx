@@ -27,7 +27,7 @@ export function installMenuSystem({
 export function makeMockMenuContent(content: string) {
 	return (
 		<div className="mock-menu">
-			{content}
+			<p>{content}</p>
 		</div>
 	)
 }
