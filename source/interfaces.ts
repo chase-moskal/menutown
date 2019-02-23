@@ -1,31 +1,43 @@
 
 import {ComponentChildren} from "preact"
 
+import {MenuAccount} from "./stores/menu-account"
 import {ScrollMarmot} from "./stores/scroll-marmot"
 import {MenuAccountant} from "./stores/menu-accountant"
 
-export type MenuBodyStore = any
+export interface MenuAccountOptions {
+	name: string
+	content: ComponentChildren
+}
 
-export interface MenuAccount {
-	menuName: string
-	menuContent: ComponentChildren
+export interface MenuAccountantOptions {
+	accounts: MenuAccount[]
+	scrollMarmot?: ScrollMarmot
 }
 
 export interface MenuSystemProps {
-	scrollMarmot: ScrollMarmot
-	menuAccountant: MenuAccountant
+	accountant: MenuAccountant
 }
 
-export interface MenuEntryProps {
-	menuIsActive: boolean
-	menuAccount: MenuAccount
+export interface MenuDisplayProps {
+	panelOpen: boolean
+	account: MenuAccount
 	menuButtonClickHandler: (event: MouseEvent) => void
 }
 
 export interface InstallMenuSystemOptions {
 	element: Element
-	menuAccounts: MenuAccount[]
-	children?: ComponentChildren
+	accounts: MenuAccount[]
+	accountant?: MenuAccountant
 	scrollMarmot?: ScrollMarmot
-	menuAccountant?: MenuAccountant
+	children?: ComponentChildren
+}
+
+export interface MenuDisplayListProps {
+	accountant: MenuAccountant
+}
+
+export interface MenuBlanketProps {
+	active: boolean
+	handleBlanketClick: (event: MouseEvent) => void
 }

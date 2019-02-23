@@ -1,17 +1,22 @@
 
-import {installMenuSystem, makeMockMenuContent} from "./routines/install-menu-system"
+import {
+	installMenuSystem,
+	makeMockMenuContent
+} from "./routines/install-menu-system"
+
+import {MenuAccount} from "./stores/menu-account"
 
 installMenuSystem({
 	element: document.querySelector(".menu-system"),
-	menuAccounts: [
-		{
-			menuName: "account",
-			menuContent: makeMockMenuContent("mock account settings")
-		},
-		{
-			menuName: "cart",
-			menuContent: makeMockMenuContent("mock shopping cart")
-		}
+	accounts: [
+		new MenuAccount({
+			name: "account",
+			content: makeMockMenuContent("mock account settings")
+		}),
+		new MenuAccount({
+			name: "cart",
+			content: makeMockMenuContent("mock cart settings")
+		})
 	]
 })
 

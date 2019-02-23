@@ -1,80 +1,34 @@
 
-import {autorun} from "mobx"
 import {h, Component} from "preact"
 import {observer} from "mobx-preact"
 
-import {MenuSystemProps, MenuAccount} from "../interfaces"
+import {MenuSystemProps} from "../interfaces"
 
-import {MenuEntry} from "./menu-entry"
+import {MenuBlanket} from "./menu-blanket"
+import {MenuDisplayList} from "./menu-display-list"
 
 @observer
 export class MenuSystem extends Component<MenuSystemProps> {
 
-	private reactions = [
-		autorun(() => {
-			const {menuAccountant, scrollMarmot} = this.props
-			scrollMarmot.setLock(menuAccountant.isActive)
-		})
-	]
-
-	componentWillUnmount() {
-		for (const dispose of this.reactions) dispose()
-	}
-
 	render() {
-		const {menuAccountant, scrollMarmot, children} = this.props
-		const {isActive, activeMenuAccount, menuAccounts} = menuAccountant
-		const top = `${scrollMarmot.scrollPoint}px`
+		const {accountant, children} = this.props
+		const top = `${accountant.scrollMarmot.scrollPoint}px`
 		return (
 			<div
 				className="menu-system"
-				data-is-active={isActive}
-				data-active-menu-name={isActive && activeMenuAccount.menuName}
+				data-active={accountant.active}
+				data-active-name={accountant.active && accountant.activeAccount.name}
 				style={{top}}>
-					{this.renderMenuBlanket(isActive)}
+					<MenuBlanket
+						active={accountant.active}
+						handleBlanketClick={this.handleBlanketClick}/>
 					{children}
-					<div className="menu-entries">
-						{this.renderMenuEntries(menuAccounts)}
-					</div>
+					<MenuDisplayList accountant={accountant}/>
 			</div>
 		)
-	}
-
-	private renderMenuBlanket(isActive: boolean) {
-		return (
-			<div
-				className="menu-blanket"
-				onClick={isActive ? this.handleBlanketClick : undefined}>
-			</div>
-		)
-	}
-
-	private renderMenuEntries(menuAccounts: MenuAccount[]) {
-		const {menuAccountant} = this.props
-		return menuAccounts.map(menuAccount => {
-			const menuIsActive = menuAccount === menuAccountant.activeMenuAccount
-			const menuButtonClickHandler = this.prepareMenuButtonClickHandler(menuAccount)
-			return (
-				<MenuEntry {...{
-					menuAccount,
-					menuIsActive,
-					menuButtonClickHandler
-				}}/>
-			)
-		})
 	}
 
 	private readonly handleBlanketClick = () => {
-		const {menuAccountant} = this.props
-		menuAccountant.toggleActiveMenuAccount(null)
+		this.props.accountant.toggleAccount(null)
 	}
-
-	private readonly prepareMenuButtonClickHandler = (
-		(menuAccount: MenuAccount) => {
-			const {menuAccountant} = this.props
-			return (event: MouseEvent) => {
-				menuAccountant.toggleActiveMenuAccount(menuAccount)
-			}
-		}
-	)
 }

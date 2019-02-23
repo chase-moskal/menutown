@@ -35,7 +35,7 @@
 		bottom: 0;
 	}
 
-	&[data-is-active] {
+	&[data-active] {
 		position: absolute;
 
 		.menu-blanket {
@@ -43,7 +43,7 @@
 		}
 	}
 
-	.menu-entries {
+	.menu-display-list {
 		display: flex;
 		align-items: flex-end;
 		justify-content: flex-end;
@@ -51,11 +51,11 @@
 		background: rgba(255,255,255, 0.6);
 	}
 
-	.menu-entry {
+	.menu-display {
 		display: block;
 		flex: 0 0 auto;
 
-		& + .menu-entry {
+		& + .menu-display {
 			margin-left: $gapsize;
 		}
 

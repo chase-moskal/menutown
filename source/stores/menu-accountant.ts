@@ -1,31 +1,70 @@
 
-import {observable, action, computed} from "mobx"
+import {
+	action,
+	autorun,
+	computed,
+	observable,
+	runInAction,
+	IReactionDisposer
+} from "mobx"
 
-import {MenuAccount} from "../interfaces"
+import {MenuAccountantOptions} from "../interfaces"
+
+import {MenuAccount} from "./menu-account"
+import {ScrollMarmot} from "./scroll-marmot"
 
 /**
- * Menu accountant
- * - keep track of which menu account is active
- * - toggle menu account activity
+ * Keep track of which menu account is active
  */
 export class MenuAccountant {
-	@observable menuAccounts: MenuAccount[] = []
-	@observable activeMenuAccount: MenuAccount = null
+	@observable scrollMarmot: ScrollMarmot
+	@observable accounts: MenuAccount[] = []
+	@observable activeAccount: MenuAccount = null
 
-	@computed get isActive() {
-		return !!this.activeMenuAccount
+	@computed get active() {
+		return !!this.activeAccount
 	}
 
-	@action registerMenuAccount(menuAccount: MenuAccount) {
-		this.menuAccounts.push(menuAccount)
+	private disposables: IReactionDisposer[] = []
+
+	/**
+	 * Construct a menu accountant
+	 */
+	constructor({
+		accounts,
+		scrollMarmot = new ScrollMarmot()
+	}: MenuAccountantOptions) {
+
+		// register accounts and save the scrollmarmot
+		runInAction(() => {
+			this.scrollMarmot = scrollMarmot
+			for (const account of accounts) this.accounts.push(account)
+		})
+
+		// set lock on scroll marmot based on menu activity
+		this.disposables.push(
+			autorun(() => {
+				scrollMarmot.setLock(this.active)
+			})
+		)
 	}
 
-	@action toggleActiveMenuAccount(menuAccount: MenuAccount) {
-		if (this.activeMenuAccount === menuAccount) {
-			this.activeMenuAccount = null
+	/**
+	 * Toggle which account is active
+	 */
+	@action toggleAccount(account: MenuAccount) {
+		if (this.activeAccount === account) {
+			this.activeAccount = null
 		}
 		else {
-			this.activeMenuAccount = menuAccount
+			this.activeAccount = account
 		}
+	}
+
+	/**
+	 * Dispose mobx reactions
+	 */
+	dispose() {
+		for (const dispose of this.disposables) dispose()
 	}
 }
