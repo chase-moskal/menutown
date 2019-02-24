@@ -6,8 +6,8 @@ import {observable, action} from "mobx"
  * - has a lock mechanism which halts the tracking
  */
 export class ScrollMarmot {
-	@observable lock: boolean = false
-	@observable scrollPoint: number = 0
+	@observable lock: boolean
+	@observable scrollPoint: number
 
 	@action updateScrollPoint() {
 		this.scrollPoint = document.documentElement.scrollTop
@@ -26,6 +26,7 @@ export class ScrollMarmot {
 
 	constructor() {
 		this.updateScrollPoint()
+		this.setLock(false)
 		for (const event of this.scrollUpdateEvents)
 			window.addEventListener(event, this.handleScrollUpdate)
 	}

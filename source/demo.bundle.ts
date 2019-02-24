@@ -1,8 +1,12 @@
 
+import {configure} from "mobx"
+
 import {
 	installMenuSystem,
 	makeMockMenuContent
 } from "./routines/install-menu-system"
+
+configure({enforceActions: "always"})
 
 installMenuSystem({
 	element: document.querySelector(".menu-system"),

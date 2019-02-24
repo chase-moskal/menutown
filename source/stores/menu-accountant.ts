@@ -16,9 +16,9 @@ import {ScrollMarmot} from "./scroll-marmot"
  * Keep track of which menu account is active
  */
 export class MenuAccountant {
+	@observable accounts: MenuAccount[]
 	@observable scrollMarmot: ScrollMarmot
-	@observable accounts: MenuAccount[] = []
-	@observable activeAccount: MenuAccount = null
+	@observable activeAccount: MenuAccount
 
 	@computed get active() {
 		return !!this.activeAccount
@@ -36,6 +36,8 @@ export class MenuAccountant {
 
 		// register accounts and save the scrollmarmot
 		runInAction(() => {
+			this.accounts = []
+			this.activeAccount = null
 			this.scrollMarmot = scrollMarmot
 			for (const account of accounts) this.accounts.push(account)
 		})
