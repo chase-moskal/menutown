@@ -23,11 +23,3 @@ export function installMenuSystem({
 
 	return {accountant, newElement}
 }
-
-export function makeMockMenuContent(content: string) {
-	return (
-		<div className="mock-menu">
-			<p>{content}</p>
-		</div>
-	)
-}

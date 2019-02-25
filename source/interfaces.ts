@@ -6,7 +6,8 @@ import {MenuAccountant} from "./stores/menu-accountant"
 
 export interface MenuAccount {
 	name: string
-	content: JSX.Element
+	content: ComponentChildren
+	buttonContent?: ComponentChildren
 }
 
 export interface MenuAccountOptions {

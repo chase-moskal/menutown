@@ -17,12 +17,10 @@ export const MenuDisplay = observer(({
 			className="menu-display"
 			data-name={account.name}
 			data-active={panelOpen}>
-				<MenuButton onClick={menuButtonClickHandler}/>
-				{
-					panelOpen
-						? <MenuPanel>{account.content}</MenuPanel>
-						: null
-				}
+				<MenuButton onClick={menuButtonClickHandler}>
+					{account.buttonContent}
+				</MenuButton>
+				{panelOpen && <MenuPanel>{account.content}</MenuPanel>}
 		</div>
 	)
 })

@@ -1,6 +1,6 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.9",
+	"version": "0.0.0-dev.10",
 	"description": "cool preact/mobx menu infrastructure",
 	"main": "dist",
 	"types": "dist/index.d.ts",
