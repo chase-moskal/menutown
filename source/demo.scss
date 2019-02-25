@@ -39,7 +39,7 @@ html, body {
 }
 
 .menu-system {
-	@include menu-system($headersize);
+	@include menu-system($headersize, $headersize / 10, 1em);
 }
 
 .menu-panel {

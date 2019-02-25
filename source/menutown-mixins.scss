@@ -1,5 +1,5 @@
 
-@mixin menu-system($size, $gapsize: $size / 10) {
+@mixin menu-system($size, $gapsize: $size / 10, $lanesize: 1rem) {
 	&, * {
 		margin: 0;
 		padding: 0;
@@ -48,6 +48,7 @@
 		align-items: flex-end;
 		justify-content: flex-end;
 		padding: $gapsize;
+		margin-right: $lanesize;
 		background: rgba(255,255,255, 0.6);
 	}
 
@@ -70,8 +71,9 @@
 		.menu-panel {
 			position: absolute;
 			top: 100%;
-			right: 0;
-			width: 96%;
+			left: $lanesize;
+			right: $lanesize;
+			margin-left: auto;
 			max-width: 640px;
 			background: rgba(255,255,255, 0.9);
 			color: rgba(0,0,0, 0.8);
