@@ -1,11 +1,5 @@
 
 @mixin menu-system($size, $gapsize: $size / 10, $lanesize: 1rem) {
-	&, * {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-
 	$difsize: $size - ($gapsize * 2);
 
 	position: absolute;
