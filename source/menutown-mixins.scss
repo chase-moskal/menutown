@@ -1,17 +1,27 @@
 
-@mixin menu-system($size, $gapsize: $size / 10, $lanesize: 1rem) {
+@mixin menu-system(
+	$size: 3rem,
+	$gapsize: $size / 10,
+	$lanesize: $size / 3,
+	$menucolor: white,
+	$textcolor: #333,
+	$backplatecolor: transparentize(mix(invert($menucolor), $menucolor), 0.2),
+	$inactiveopacity: 0.6,
+	$blanketcolor: rgba(0,0,0, 0.4),
+) {
 	$difsize: $size - ($gapsize * 2);
 
 	position: absolute;
 	width: 100%;
 	top: 0;
 	right: 0;
+	pointer-events: none;
 
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;
 
-	pointer-events: none;
+	color: $textcolor;
 
 	* {
 		z-index: 1;
@@ -22,7 +32,7 @@
 		z-index: 0;
 		display: none;
 		position: fixed;
-		background: rgba(0,0,0, 0.4);
+		background: $blanketcolor;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -43,7 +53,7 @@
 		justify-content: flex-end;
 		padding: $gapsize;
 		margin-right: $lanesize;
-		background: rgba(255,255,255, 0.6);
+		background: $backplatecolor;
 	}
 
 	.menu-display {
@@ -53,25 +63,30 @@
 		& + .menu-display {
 			margin-left: $gapsize;
 		}
+	}
 
-		.menu-button {
-			position: relative;
-			display: block;
-			border: none;
-			width: $difsize;
-			height: $difsize;
-			background: rgba(255,255,255, 0.8);
-		}
+	.menu-button {
+		opacity: $inactiveopacity;
+		position: relative;
+		display: block;
+		border: none;
+		width: $difsize;
+		height: $difsize;
+		background: $menucolor;
+		color: $textcolor;
+	}
 
-		.menu-panel {
-			position: absolute;
-			top: 100%;
-			left: $lanesize;
-			right: $lanesize;
-			margin-left: auto;
-			max-width: 640px;
-			background: rgba(255,255,255, 0.9);
-			color: rgba(0,0,0, 0.8);
-		}
+	.menu-display[data-active] .menu-button {
+		opacity: 1;
+	}
+
+	.menu-panel {
+		position: absolute;
+		top: 100%;
+		left: $lanesize;
+		right: $lanesize;
+		margin-left: auto;
+		max-width: 640px;
+		background: $menucolor;
 	}
 }

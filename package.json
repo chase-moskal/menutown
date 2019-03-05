@@ -1,6 +1,6 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.12",
+	"version": "0.0.0-dev.14",
 	"description": "cool preact/mobx menu infrastructure",
 	"main": "dist",
 	"types": "dist/index.d.ts",
@@ -33,8 +33,8 @@
 		"start": "http-server ./dist"
 	},
 	"devDependencies": {
-		"@types/jest": "24.0.6",
-		"barrelsby": "1.0.2",
+		"@types/jest": "24.0.9",
+		"barrelsby": "2.0.0",
 		"browserify": "16.2.3",
 		"envify": "4.1.0",
 		"es6-promise": "4.2.6",
@@ -42,12 +42,12 @@
 		"jest": "24.1.0",
 		"mkdirp": "0.5.1",
 		"npm-run-all": "4.1.5",
-		"octicons": "8.4.2",
+		"octicons": "8.5.0",
 		"pug-cli": "1.0.0-alpha6",
 		"rimraf": "2.6.3",
 		"sassbass": "0.0.0-dev.4",
 		"tsify": "4.0.1",
-		"typescript": "3.3.3",
+		"typescript": "3.3.3333",
 		"uglify-es": "3.3.9",
 		"uglifyify": "5.0.1"
 	},

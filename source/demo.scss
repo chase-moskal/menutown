@@ -8,6 +8,10 @@ $headersize: 3.5rem;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
+	&:focus {
+		outline: 3px solid yellow;
+	}
 }
 
 html, body {
@@ -39,7 +43,10 @@ html, body {
 }
 
 .menu-system {
-	@include menu-system($headersize, $headersize / 10, 1em);
+	@include menu-system(
+		$size: $headersize,
+		$menucolor: mix(lightskyblue, white)
+	);
 }
 
 .menu-panel {
