@@ -3,5 +3,5 @@
 @import "./menutown-mixins.scss";
 
 .menu-system {
-	@include menu-system(60px)
+	@include menu-system($size: 60px);
 }
