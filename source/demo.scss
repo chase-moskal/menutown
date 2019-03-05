@@ -45,9 +45,7 @@ html, body {
 .menu-system {
 	@include menu-system(
 		$size: $headersize,
-		$menucolor: mix(lightskyblue, white),
-		$inactivecolor: skyblue,
-		$backplatecolor: transparentize(skyblue, 0.6)
+		$menucolor: mix(lightskyblue, white)
 	);
 }
 

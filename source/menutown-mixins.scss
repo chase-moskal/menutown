@@ -4,10 +4,10 @@
 	$gapsize: $size / 10,
 	$lanesize: $size / 3,
 	$menucolor: white,
-	$inactivecolor: #ddd,
-	$backplatecolor: transparentize(darken($inactivecolor, 30%), 0.2),
+	$textcolor: #333,
+	$backplatecolor: transparentize(mix(invert($menucolor), $menucolor), 0.2),
+	$inactiveopacity: 0.6,
 	$blanketcolor: rgba(0,0,0, 0.4),
-	$textcolor: #333
 ) {
 	$difsize: $size - ($gapsize * 2);
 
@@ -66,17 +66,18 @@
 	}
 
 	.menu-button {
+		opacity: $inactiveopacity;
 		position: relative;
 		display: block;
 		border: none;
 		width: $difsize;
 		height: $difsize;
-		background: $inactivecolor;
+		background: $menucolor;
 		color: $textcolor;
 	}
 
-	.menu-display[data-active="true"] .menu-button {
-		background: $menucolor;
+	.menu-display[data-active] .menu-button {
+		opacity: 1;
 	}
 
 	.menu-panel {
