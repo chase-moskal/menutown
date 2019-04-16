@@ -1,7 +1,0 @@
-
-@charset "utf-8";
-@import "./menutown-mixins.scss";
-
-.menu-system {
-	@include menu-system($size: 60px);
-}

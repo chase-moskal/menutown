@@ -1,0 +1,48 @@
+
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	color: #aaa;
+	background: #222;
+}
+
+body > header {
+	display: block;
+	background: #444;
+	padding: 1em;
+}
+
+main {
+	padding: 1em;
+	color: #444;
+}
+
+main > p + p {
+	margin-top: 0.5em;
+}
+
+menu-system {
+	--menu-blanket-color: rgba(0,0,0, 0.5);
+	--menu-gapsize: 0.5em;
+	--menu-lanesize: 1em;
+	--menu-backcolor: grey;
+}
+
+menu-display {
+	--menu-button-inactive-opacity: 0.5;
+	--menu-panel-lanesize: 1em;
+	--menu-panel-padding: 1em;
+	--menu-panel-bgcolor: white;
+}
+
+menu-display [slot=button] {
+	background: white;
+	width: 3em;
+	height: 3em;
+}
