@@ -61,7 +61,7 @@ export class MenuSystem extends LitElement {
 				bottom: 0;
 			}
 
-			[theme="concrete"][open] .blanket {
+			[theme="concrete"][active] .blanket {
 				display: block;
 			}
 
@@ -90,6 +90,7 @@ export class MenuSystem extends LitElement {
 		return {
 			theme: {type: String, reflect: true},
 			lefty: {type: Boolean, reflect: true},
+			active: {type: Boolean, reflect: true},
 			sticky: {type: Boolean, reflect: true},
 			[_scrollTop]: {type: Number},
 			[_activeIndex]: {type: String}
@@ -100,6 +101,7 @@ export class MenuSystem extends LitElement {
 		super()
 
 		this.theme = "concrete"
+		this.active = false
 		this.sticky = false
 		this.lefty = false
 
@@ -108,16 +110,19 @@ export class MenuSystem extends LitElement {
 		this[_scrollMarmot] = undefined
 
 		this[_updateScrollPoint] = scrollPoint => {
-			if (!this.open) this[_scrollTop] = scrollPoint
+			if (!this.active) this[_scrollTop] = scrollPoint
 		}
 
 		this[_handleBlanketClick] = () => {
 			this[_toggleIndex](this[_activeIndex])
 		}
 
-		this[_toggleIndex] = index => this[_activeIndex] = index === this[_activeIndex]
-			? undefined
-			: index
+		this[_toggleIndex] = index => {
+			this[_activeIndex] = index === this[_activeIndex]
+				? undefined
+				: index
+			this.active = this[_activeIndex] !== undefined
+		}
 
 		this[_getMenuDisplays] = () => {
 			const slot = this[_shadowRoot].querySelector("slot")
@@ -132,10 +137,6 @@ export class MenuSystem extends LitElement {
 		this[_shadowRoot] = this.attachShadow({mode: "closed"})
 		this[_shadowRoot].addEventListener("slotchange", () => this.requestUpdate())
 		return this[_shadowRoot]
-	}
-
-	get open() {
-		return this[_activeIndex] !== undefined
 	}
 
 	connectedCallback() {
@@ -168,8 +169,8 @@ export class MenuSystem extends LitElement {
 		return html`
 			<div class="system"
 				theme="${this.theme}"
-				?open="${this.open}"
 				?lefty="${this.lefty}"
+				?active="${this.active}"
 				style="${`top: ${top}px`}">
 					<div class="blanket" @click="${this[_handleBlanketClick]}"></div>
 					<div class="list">
