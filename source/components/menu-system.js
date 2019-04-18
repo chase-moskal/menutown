@@ -4,9 +4,12 @@ import {LitElement, html, css} from "lit-element"
 import {MenuDisplay} from "./menu-display.js"
 import {makeScrollMarmot} from "../toolbox/make-scroll-marmot.js"
 
-const _actions = Symbol("actions")
 const _scrollTop = Symbol("scrollTop")
+const _shadowRoot = Symbol("shadowRoot")
+const _activeIndex = Symbol("activeIndex")
+const _toggleIndex = Symbol("toggleIndex")
 const _scrollMarmot = Symbol("scrollMarmot")
+const _getMenuDisplays = Symbol("getMenuDisplays")
 const _updateScrollPoint = Symbol("updateScrollPoint")
 const _handleBlanketClick = Symbol("handleBlanketClick")
 
@@ -14,6 +17,16 @@ export class MenuSystem extends LitElement {
 
 	static get styles() {
 		return css`
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			*:focus {
+				outline: var(--menu-outline, 2px solid cyan);
+			}
+
 			[theme="concrete"] {
 				position: absolute;
 				width: 100%;
@@ -76,10 +89,10 @@ export class MenuSystem extends LitElement {
 	static get properties() {
 		return {
 			theme: {type: String, reflect: true},
-			sticky: {type: Boolean, reflect: true},
 			lefty: {type: Boolean, reflect: true},
-			activeIndex: {type: String, reflect: true},
-			[_scrollTop]: {type: Number}
+			sticky: {type: Boolean, reflect: true},
+			[_scrollTop]: {type: Number},
+			[_activeIndex]: {type: String}
 		}
 	}
 
@@ -89,8 +102,8 @@ export class MenuSystem extends LitElement {
 		this.theme = "concrete"
 		this.sticky = false
 		this.lefty = false
-		this.activeIndex = undefined
 
+		this[_activeIndex] = undefined
 		this[_scrollTop] = 0
 		this[_scrollMarmot] = undefined
 
@@ -98,19 +111,31 @@ export class MenuSystem extends LitElement {
 			if (!this.open) this[_scrollTop] = scrollPoint
 		}
 
-		this[_handleBlanketClick] = event => {
-			this[_actions].toggleIndex(this.activeIndex)
+		this[_handleBlanketClick] = () => {
+			this[_toggleIndex](this[_activeIndex])
 		}
 
-		this[_actions] = {
-			toggleIndex: index => this.activeIndex = index === this.activeIndex
-				? undefined
-				: index
+		this[_toggleIndex] = index => this[_activeIndex] = index === this[_activeIndex]
+			? undefined
+			: index
+
+		this[_getMenuDisplays] = () => {
+			const slot = this[_shadowRoot].querySelector("slot")
+			const elements = Array.from(slot.assignedElements())
+			return elements.filter(
+				element => element.matches(MenuDisplay.tagName.toLowerCase())
+			)
 		}
 	}
 
+	createRenderRoot() {
+		this[_shadowRoot] = this.attachShadow({mode: "closed"})
+		this[_shadowRoot].addEventListener("slotchange", () => this.requestUpdate())
+		return this[_shadowRoot]
+	}
+
 	get open() {
-		return this.activeIndex !== undefined
+		return this[_activeIndex] !== undefined
 	}
 
 	connectedCallback() {
@@ -129,23 +154,11 @@ export class MenuSystem extends LitElement {
 	}
 
 	updated() {
-		const slot = this.shadowRoot.querySelector("slot")
-		const elements = Array.from(slot.assignedElements())
-		const menuDisplays = elements.filter(
-			element => element.tagName.toLowerCase() === MenuDisplay.tagName.toLowerCase()
-		)
-
-		menuDisplays.forEach((display, index) => {
+		this[_getMenuDisplays]().forEach((display, index) => {
 			display.theme = this.theme
-			display.toggle = () => this[_actions].toggleIndex(index)
-			display.open = index === this.activeIndex
+			display.toggle = () => this[_toggleIndex](index)
+			display.open = index === this[_activeIndex]
 		})
-	}
-
-	createRenderRoot() {
-		const shadowRoot = super.createRenderRoot()
-		shadowRoot.addEventListener("slotchange", () => this.requestUpdate())
-		return shadowRoot
 	}
 
 	render() {

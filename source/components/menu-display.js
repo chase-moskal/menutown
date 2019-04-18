@@ -2,15 +2,6 @@
 import {LitElement, html, css} from "lit-element"
 
 export class MenuDisplay extends LitElement {
-
-	static get properties() {
-		return {
-			theme: {type: String},
-			toggle: {type: Function},
-			open: {type: Boolean, reflect: true}
-		}
-	}
-
 	static get styles() {
 		return css`
 			* {
@@ -55,12 +46,24 @@ export class MenuDisplay extends LitElement {
 		`
 	}
 
+	static get properties() {
+		return {
+			theme: {type: String},
+			toggle: {type: Function},
+			open: {type: Boolean, reflect: true}
+		}
+	}
+
 	constructor() {
 		super()
 		this.theme = ""
 		this.open = false
 		this.toggle = () => {}
 		this.handleButtonClick = () => this.toggle()
+	}
+
+	createRenderRoot() {
+		return this.attachShadow({mode: "closed"})
 	}
 
 	render() {

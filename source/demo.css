@@ -7,9 +7,9 @@
 	box-sizing: border-box;
 }
 
-*:focus, menu-system {
+*:focus {
+	outline: 3px solid lime;
 	--menu-outline: 3px solid lime;
-	outline: var(--menu-outline);
 }
 
 html, body {
@@ -48,6 +48,7 @@ menu-system {
 }
 
 menu-display {
+	--menu-outline: 2px solid cyan;
 	--menu-panel-padding: 1rem;
 	--menu-panel-lanesize: 1rem;
 	--menu-panel-bgcolor: white;
