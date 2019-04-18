@@ -17,13 +17,19 @@ export class MenuSystem extends LitElement {
 			[theme="concrete"] {
 				position: absolute;
 				width: 100%;
-				top: 0;
 				right: 0;
 				pointer-events: none;
 
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
+			}
+
+			[theme="concrete"][lefty] {
+				right: auto;
+				left: 0;
+				align-items: flex-start;
+				justify-content: flex-start;
 			}
 
 			[theme="concrete"] * {
@@ -50,9 +56,14 @@ export class MenuSystem extends LitElement {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
-				padding: var(--menu-gapsize, 0.25em);
-				margin-right: var(--menu-lanesize, 1em);
+				padding: var(--menu-gapsize, 0.15rem);
+				margin-right: var(--menu-lanesize, 1rem);
 				background: var(--menu-backcolor, rgba(240, 240, 240, 0.5));
+			}
+
+			[theme="concrete"][lefty] .list {
+				margin-right: unset;
+				margin-left: var(--menu-lanesize, 1rem);
 			}
 
 			[theme="concrete"] .list slot::slotted(menu-display) {
@@ -64,9 +75,10 @@ export class MenuSystem extends LitElement {
 
 	static get properties() {
 		return {
-			theme: {type: String},
-			sticky: {type: Boolean},
-			activeIndex: {type: String},
+			theme: {type: String, reflect: true},
+			sticky: {type: Boolean, reflect: true},
+			lefty: {type: Boolean, reflect: true},
+			activeIndex: {type: String, reflect: true},
 			[_scrollTop]: {type: Number}
 		}
 	}
@@ -74,8 +86,9 @@ export class MenuSystem extends LitElement {
 	constructor() {
 		super()
 
-		this.sticky = false
 		this.theme = "concrete"
+		this.sticky = false
+		this.lefty = false
 		this.activeIndex = undefined
 
 		this[_scrollTop] = 0
@@ -140,10 +153,10 @@ export class MenuSystem extends LitElement {
 			? this[_scrollTop]
 			: 0
 		return html`
-			<div
-				class="system"
+			<div class="system"
 				theme="${this.theme}"
 				?open="${this.open}"
+				?lefty="${this.lefty}"
 				style="${`top: ${top}px`}">
 					<div class="blanket" @click="${this[_handleBlanketClick]}"></div>
 					<div class="list">

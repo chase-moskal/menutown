@@ -6,8 +6,8 @@ export class MenuDisplay extends LitElement {
 	static get properties() {
 		return {
 			theme: {type: String},
-			open: {type: Boolean},
-			toggle: {type: Function}
+			toggle: {type: Function},
+			open: {type: Boolean, reflect: true}
 		}
 	}
 
@@ -22,7 +22,6 @@ export class MenuDisplay extends LitElement {
 			}
 
 			[theme="concrete"] button {
-				opacity: var(--menu-button-inactive-opacity, 0.5);
 				position: relative;
 				display: block;
 				margin: var(--menu-gapsize, 0.15em);
@@ -31,20 +30,17 @@ export class MenuDisplay extends LitElement {
 				background: transparent;
 			}
 
-			[theme="concrete"][open] {
-				opacity: 1;
-			}
-
 			[theme="concrete"] .panel {
 				position: absolute;
 				top: 100%;
-				left: var(--menu-panel-lanesize, 1em);
-				right: var(--menu-panel-lanesize, 1em);
+				left: var(--menu-panel-lanesize, 1rem);
+				right: var(--menu-panel-lanesize, 1rem);
 				margin-left: auto;
 				max-width: 640px;
-				padding: var(--menu-panel-padding, 0);
-				background: var(--menu-panel-bgcolor);
+				padding: var(--menu-panel-padding, 1rem);
+				background: var(--menu-panel-bgcolor, white);
 				border-radius: var(--menu-panel-border-radius, 0);
+				box-shadow: var(--menu-panel-box-shadow, none);
 			}
 		`
 	}
