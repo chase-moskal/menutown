@@ -2,18 +2,19 @@
 import {LitElement, html, css} from "lit-element"
 
 import {MenuDisplay} from "./menu-display.js"
-import {makeScrollMarmot} from "../toolbox/scroll-marmot.js"
+import {makeScrollMarmot} from "../toolbox/make-scroll-marmot.js"
 
-const privates = {
-	actions: Symbol(),
-	scrollMarmot: Symbol(),
-}
+const _actions = Symbol("actions")
+const _scrollTop = Symbol("scrollTop")
+const _scrollMarmot = Symbol("scrollMarmot")
+const _updateScrollPoint = Symbol("updateScrollPoint")
+const _handleBlanketClick = Symbol("handleBlanketClick")
 
 export class MenuSystem extends LitElement {
 
 	static get styles() {
 		return css`
-			[theme="sticky"] {
+			[theme="concrete"] {
 				position: absolute;
 				width: 100%;
 				top: 0;
@@ -25,12 +26,12 @@ export class MenuSystem extends LitElement {
 				justify-content: flex-end;
 			}
 
-			[theme="sticky"] * {
+			[theme="concrete"] * {
 				z-index: 1;
 				pointer-events: all;
 			}
 
-			[theme="sticky"] .blanket {
+			[theme="concrete"] .blanket {
 				z-index: 0;
 				display: none;
 				position: fixed;
@@ -41,20 +42,20 @@ export class MenuSystem extends LitElement {
 				bottom: 0;
 			}
 
-			[theme="sticky"][open] .blanket {
+			[theme="concrete"][open] .blanket {
 				display: block;
 			}
 
-			[theme="sticky"] .list {
+			[theme="concrete"] .list {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
-				padding: var(--menu-gapsize, 1em);
+				padding: var(--menu-gapsize, 0.25em);
 				margin-right: var(--menu-lanesize, 1em);
-				background: var(--menu-backcolor, grey);
+				background: var(--menu-backcolor, rgba(240, 240, 240, 0.5));
 			}
 
-			[theme="sticky"] .list slot::slotted(menu-display) {
+			[theme="concrete"] .list slot::slotted(menu-display) {
 				display: block;
 				flex: 0 0 auto;
 			}
@@ -64,17 +65,31 @@ export class MenuSystem extends LitElement {
 	static get properties() {
 		return {
 			theme: {type: String},
+			sticky: {type: Boolean},
 			activeIndex: {type: String},
-			scrollFollowDisabled: {type: Boolean},
+			[_scrollTop]: {type: Number}
 		}
 	}
 
 	constructor() {
 		super()
-		this.theme = "sticky"
+
+		this.sticky = false
+		this.theme = "concrete"
 		this.activeIndex = undefined
-		this.scrollFollowDisabled = false
-		this[privates.actions] = {
+
+		this[_scrollTop] = 0
+		this[_scrollMarmot] = undefined
+
+		this[_updateScrollPoint] = scrollPoint => {
+			if (!this.open) this[_scrollTop] = scrollPoint
+		}
+
+		this[_handleBlanketClick] = event => {
+			this[_actions].toggleIndex(this.activeIndex)
+		}
+
+		this[_actions] = {
 			toggleIndex: index => this.activeIndex = index === this.activeIndex
 				? undefined
 				: index
@@ -85,31 +100,31 @@ export class MenuSystem extends LitElement {
 		return this.activeIndex !== undefined
 	}
 
-	firstUpdated() {
-		if (this.theme === "sticky" && !this.scrollFollowDisabled) {
-			const system = this.shadowRoot.querySelector(".system")
-			this[privates.scrollMarmot] = makeScrollMarmot({
-				onScrollUpdate: scrollPoint => system.style.top = `${scrollPoint}px`
+	connectedCallback() {
+		super.connectedCallback()
+		if (this.sticky && this.isConnected) {
+			this[_scrollMarmot] = makeScrollMarmot({
+				onScrollUpdate: this[_updateScrollPoint]
 			})
 		}
 	}
 
 	disconnectedCallback() {
-		const scrollMarmot = this[privates.scrollMarmot]
-		if (scrollMarmot) scrollMarmot.dispose()
+		super.disconnectedCallback()
+		if (this[_scrollMarmot]) this[_scrollMarmot].dispose()
+		this[_scrollMarmot] = null
 	}
 
 	updated() {
-		const scrollMarmot = this[privates.scrollMarmot]
-		if (scrollMarmot) scrollMarmot.setLock(this.open ? true : false)
 		const slot = this.shadowRoot.querySelector("slot")
 		const elements = Array.from(slot.assignedElements())
 		const menuDisplays = elements.filter(
 			element => element.tagName.toLowerCase() === MenuDisplay.tagName.toLowerCase()
 		)
+
 		menuDisplays.forEach((display, index) => {
 			display.theme = this.theme
-			display.toggle = () => this[privates.actions].toggleIndex(index)
+			display.toggle = () => this[_actions].toggleIndex(index)
 			display.open = index === this.activeIndex
 		})
 	}
@@ -121,12 +136,19 @@ export class MenuSystem extends LitElement {
 	}
 
 	render() {
+		const top = this.sticky
+			? this[_scrollTop]
+			: 0
 		return html`
-			<div class="system" theme="${this.theme}" ?open="${this.open}">
-				<div class="blanket"></div>
-				<div class="list">
-					<slot></slot>
-				</div>
+			<div
+				class="system"
+				theme="${this.theme}"
+				?open="${this.open}"
+				style="${`top: ${top}px`}">
+					<div class="blanket" @click="${this[_handleBlanketClick]}"></div>
+					<div class="list">
+						<slot></slot>
+					</div>
 			</div>
 		`
 	}

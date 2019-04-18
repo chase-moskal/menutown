@@ -21,29 +21,30 @@ export class MenuDisplay extends LitElement {
 				display: block;
 			}
 
-			[theme="sticky"] button {
+			[theme="concrete"] button {
 				opacity: var(--menu-button-inactive-opacity, 0.5);
 				position: relative;
 				display: block;
-				margin: var(--menu-gapsize, 0.5em);
+				margin: var(--menu-gapsize, 0.15em);
 				padding: 0;
 				border: none;
 				background: transparent;
 			}
 
-			[theme="sticky"][open] {
+			[theme="concrete"][open] {
 				opacity: 1;
 			}
 
-			[theme="sticky"] .panel {
+			[theme="concrete"] .panel {
 				position: absolute;
 				top: 100%;
-				left: var(--menu-panel-lanesize);
-				right: var(--menu-panel-lanesize);
+				left: var(--menu-panel-lanesize, 1em);
+				right: var(--menu-panel-lanesize, 1em);
 				margin-left: auto;
 				max-width: 640px;
 				padding: var(--menu-panel-padding, 0);
 				background: var(--menu-panel-bgcolor);
+				border-radius: var(--menu-panel-border-radius, 0);
 			}
 		`
 	}

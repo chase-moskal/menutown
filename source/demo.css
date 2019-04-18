@@ -10,17 +10,23 @@
 html, body {
 	color: #aaa;
 	background: #222;
+	font-size: 16px;
 }
 
-body > header {
+.siteheader {
 	display: block;
 	background: #444;
-	padding: 1em;
+	padding: 0.5em 1em;
+	min-height: 3rem;
+}
+
+.siteheader > h1 {
+	font-size: 1.5em;
 }
 
 main {
 	padding: 1em;
-	color: #444;
+	color: #777;
 }
 
 main > p + p {
@@ -28,21 +34,24 @@ main > p + p {
 }
 
 menu-system {
+	--menu-lanesize: 1rem;
+	--menu-gapsize: 0.15rem;
 	--menu-blanket-color: rgba(0,0,0, 0.5);
-	--menu-gapsize: 0.5em;
-	--menu-lanesize: 1em;
-	--menu-backcolor: grey;
+	--menu-backcolor: rgba(240, 240, 240, 0.5);
 }
 
 menu-display {
+	--menu-panel-padding: 1rem;
+	--menu-panel-lanesize: 1rem;
 	--menu-button-inactive-opacity: 0.5;
-	--menu-panel-lanesize: 1em;
-	--menu-panel-padding: 1em;
 	--menu-panel-bgcolor: white;
 }
 
 menu-display [slot=button] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2.4rem;
+	padding: 0.5rem;
 	background: white;
-	width: 3em;
-	height: 3em;
 }
