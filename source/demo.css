@@ -7,6 +7,11 @@
 	box-sizing: border-box;
 }
 
+*:focus, menu-system {
+	--menu-outline: 3px solid lime;
+	outline: var(--menu-outline);
+}
+
 html, body {
 	color: #aaa;
 	background: #222;

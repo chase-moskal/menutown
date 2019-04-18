@@ -13,6 +13,16 @@ export class MenuDisplay extends LitElement {
 
 	static get styles() {
 		return css`
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			*:focus {
+				outline: var(--menu-outline, 2px solid cyan);
+			}
+
 			.menu > .panel {
 				display: none;
 			}
