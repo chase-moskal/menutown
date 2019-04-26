@@ -1,5 +1,5 @@
 
-import {LitElement, html, css} from "lit-element"
+import {Component, html, css} from "../toolbox/component.js"
 
 import {MenuDisplay} from "./menu-display.js"
 import {makeScrollMarmot} from "../toolbox/make-scroll-marmot.js"
@@ -13,7 +13,7 @@ const _getMenuDisplays = Symbol("getMenuDisplays")
 const _updateScrollPoint = Symbol("updateScrollPoint")
 const _handleBlanketClick = Symbol("handleBlanketClick")
 
-export class MenuSystem extends LitElement {
+export class MenuSystem extends Component {
 
 	static get styles() {
 		return css`
@@ -128,7 +128,7 @@ export class MenuSystem extends LitElement {
 			const slot = this[_shadowRoot].querySelector("slot")
 			const elements = Array.from(slot.assignedElements())
 			return elements.filter(
-				element => element.matches(MenuDisplay.tagName.toLowerCase())
+				element => element instanceof MenuDisplay
 			)
 		}
 	}
@@ -180,7 +180,3 @@ export class MenuSystem extends LitElement {
 		`
 	}
 }
-
-MenuSystem.tagName = "menu-system"
-
-customElements.define(MenuSystem.tagName, MenuSystem)

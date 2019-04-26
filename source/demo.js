@@ -1,6 +1,5 @@
 
-import "./components/menu-display.js"
-import "./components/menu-system.js"
+import "./register-all.js"
 
 const menuSystem = document.querySelector("menu-system")
 menuSystem.hidden = false

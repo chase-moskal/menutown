@@ -1,7 +1,7 @@
 
-import {LitElement, html, css} from "lit-element"
+import {Component, html, css} from "../toolbox/component.js"
 
-export class MenuDisplay extends LitElement {
+export class MenuDisplay extends Component {
 	static get styles() {
 		return css`
 			* {
@@ -79,7 +79,3 @@ export class MenuDisplay extends LitElement {
 		`
 	}
 }
-
-MenuDisplay.tagName = "menu-display"
-
-customElements.define(MenuDisplay.tagName, MenuDisplay)
