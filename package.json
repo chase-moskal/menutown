@@ -1,8 +1,9 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.16",
+	"version": "0.0.0-dev.17",
 	"description": "menu system ui infrastructure",
 	"main": "source/index.js",
+	"module": "source/index.js",
 	"files": [
 		"dist",
 		"source"
@@ -22,6 +23,12 @@
 		"octicons": "^8.5.0",
 		"rimraf": "^2.6.3"
 	},
+	"keywords": [
+		"menu",
+		"menu-system",
+		"menu-ui",
+		"web-components"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/chase-moskal/menutown.git"
@@ -31,6 +38,5 @@
 	"bugs": {
 		"url": "https://github.com/chase-moskal/menutown/issues"
 	},
-	"homepage": "https://github.com/chase-moskal/menutown#readme",
-	"keywords": []
+	"homepage": "https://github.com/chase-moskal/menutown#readme"
 }

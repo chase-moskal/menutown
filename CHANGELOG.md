@@ -1,6 +1,10 @@
 
 # menutown changelog
 
+## v0.0.0-dev.17 — 2019-04-26
+
+huge web components refactor
+
 ## v0.0.0-dev.15 — 2019-03-04
 
 breaking:
