@@ -36,7 +36,6 @@ export class MenuDisplay extends Component {
 
 			:host([theme="concrete"]) .panel {
 				position: absolute;
-				top: 100%;
 				left: var(--menu-lanesize, 1rem);
 				right: var(--menu-lanesize, 1rem);
 				width: var(--menu-panel-width, 480px);
@@ -47,6 +46,15 @@ export class MenuDisplay extends Component {
 				border-radius: var(--menu-panel-border-radius, 0);
 				box-shadow: var(--menu-panel-box-shadow, none);
 			}
+
+			:host([theme="concrete"][sticky]) .panel {
+				top: 100%;
+			}
+
+			:host([theme="concrete"][lefty]) .panel {
+				margin-left: unset;
+				margin-right: auto;
+			}
 		`
 	}
 
@@ -54,7 +62,9 @@ export class MenuDisplay extends Component {
 		return {
 			toggle: {type: Function},
 			open: {type: Boolean, reflect: true},
-			theme: {type: String, reflect: true}
+			theme: {type: String, reflect: true},
+			lefty: {type: Boolean, reflect: true},
+			sticky: {type: Boolean, reflect: true}
 		}
 	}
 

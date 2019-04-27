@@ -27,7 +27,7 @@ export class MenuSystem extends Component {
 			}
 
 			.system {
-				position: relative;
+				position: static;
 			}
 
 			:host([sticky]) .system {

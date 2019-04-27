@@ -19,14 +19,19 @@ html, body {
 }
 
 .siteheader {
-	display: block;
+	display: flex;
 	background: #444;
 	padding: 0.5em 1em;
 	min-height: 3rem;
+	justify-content: space-between;
 }
 
 .siteheader > h1 {
 	font-size: 1.5em;
+}
+
+.siteheader > * {
+	flex: 0 1 auto;
 }
 
 main {
