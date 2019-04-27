@@ -17,30 +17,31 @@ export class MenuDisplay extends Component {
 				outline: var(--focus-outline, 2px solid #0af);
 			}
 
-			.menu > .panel {
-				display: none;
-			}
-
-			[open] > .panel {
-				display: block;
-			}
-
-			[theme="concrete"] button {
+			:host([theme="concrete"]) button {
 				position: relative;
 				display: block;
-				margin: var(--menu-gapsize, 0.15em);
+				margin: var(--menu-gapsize, 0.15rem);
 				padding: 0;
 				border: none;
 				background: transparent;
 			}
 
-			[theme="concrete"] .panel {
+			.panel {
+				display: none;
+			}
+
+			:host([open]) .panel {
+				display: block;
+			}
+
+			:host([theme="concrete"]) .panel {
 				position: absolute;
 				top: 100%;
-				left: var(--menu-panel-lanesize, 1rem);
-				right: var(--menu-panel-lanesize, 1rem);
+				left: var(--menu-lanesize, 1rem);
+				right: var(--menu-lanesize, 1rem);
+				width: var(--menu-panel-width, 480px);
+				max-width: calc(100% - calc(var(--menu-lanesize, 1rem) * 2));
 				margin-left: auto;
-				max-width: 640px;
 				padding: var(--menu-panel-padding, 1rem);
 				background: var(--menu-panel-bgcolor, white);
 				border-radius: var(--menu-panel-border-radius, 0);
@@ -51,9 +52,9 @@ export class MenuDisplay extends Component {
 
 	static get properties() {
 		return {
-			theme: {type: String},
 			toggle: {type: Function},
-			open: {type: Boolean, reflect: true}
+			open: {type: Boolean, reflect: true},
+			theme: {type: String, reflect: true}
 		}
 	}
 
@@ -77,7 +78,7 @@ export class MenuDisplay extends Component {
 
 	render() {
 		return html`
-			<div class="menu" theme="${this.theme}" ?open="${this.open}">
+			<div class="menu">
 				<button @click="${this[_handleButtonClick]}">
 					<slot name="button"></slot>
 				</button>

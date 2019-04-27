@@ -37,25 +37,25 @@ export class MenuSystem extends Component {
 				pointer-events: none;
 			}
 
-			[theme="concrete"] {
+			:host([theme="concrete"]) .system {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
 			}
 
-			[theme="concrete"][lefty] {
+			:host([theme="concrete"][lefty]) .system {
 				right: auto;
 				left: 0;
 				align-items: flex-start;
 				justify-content: flex-start;
 			}
 
-			[theme="concrete"] * {
+			:host([theme="concrete"]) .system * {
 				z-index: 1;
 				pointer-events: all;
 			}
 
-			[theme="concrete"] .blanket {
+			:host([theme="concrete"]) .blanket {
 				z-index: 0;
 				display: none;
 				position: fixed;
@@ -66,11 +66,11 @@ export class MenuSystem extends Component {
 				bottom: 0;
 			}
 
-			[theme="concrete"][active] .blanket {
+			:host([theme="concrete"][active]) .blanket {
 				display: block;
 			}
 
-			[theme="concrete"] .list {
+			:host([theme="concrete"]) .list {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
@@ -79,12 +79,12 @@ export class MenuSystem extends Component {
 				background: var(--menu-backcolor, rgba(240, 240, 240, 0.5));
 			}
 
-			[theme="concrete"][lefty] .list {
+			:host([theme="concrete"][lefty]) .list {
 				margin-right: unset;
 				margin-left: var(--menu-lanesize, 1rem);
 			}
 
-			[theme="concrete"] .list slot::slotted(menu-display) {
+			:host([theme="concrete"]) .list slot::slotted(menu-display) {
 				display: block;
 				flex: 0 0 auto;
 			}
@@ -162,6 +162,7 @@ export class MenuSystem extends Component {
 	updated() {
 		this[_getMenuDisplays]().forEach((display, index) => {
 			display.theme = this.theme
+			display.lefty = this.lefty
 			display.toggle = () => this[_toggleIndex](index)
 			display.open = index === this[_activeIndex]
 		})
@@ -172,15 +173,11 @@ export class MenuSystem extends Component {
 			? this[_scrollTop]
 			: 0
 		return html`
-			<div class="system"
-				theme="${this.theme}"
-				?lefty="${this.lefty}"
-				?active="${this.active}"
-				style="${`top: ${top}px`}">
-					<div class="blanket" @click="${this[_handleBlanketClick]}"></div>
-					<div class="list">
-						<slot></slot>
-					</div>
+			<div class="system" style="${`top: ${top}px`}">
+				<div class="blanket" @click="${this[_handleBlanketClick]}"></div>
+				<div class="list">
+					<slot></slot>
+				</div>
 			</div>
 		`
 	}

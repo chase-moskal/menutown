@@ -50,8 +50,9 @@ menu-system {
 menu-display {
 	--focus-outline: 2px solid cyan;
 	--menu-panel-padding: 1rem;
-	--menu-panel-lanesize: 1rem;
 	--menu-panel-bgcolor: white;
+	--menu-panel-box-shadow: none;
+	--menu-panel-border-radius: none;
 }
 
 */

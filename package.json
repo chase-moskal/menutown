@@ -1,6 +1,6 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.19",
+	"version": "0.0.0-dev.20",
 	"description": "menu system ui infrastructure",
 	"main": "source/index.js",
 	"module": "source/index.js",
