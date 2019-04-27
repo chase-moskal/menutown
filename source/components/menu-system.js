@@ -1,7 +1,6 @@
 
-import {Component, html, css} from "../toolbox/component.js"
-
 import {MenuDisplay} from "./menu-display.js"
+import {Component, html, css} from "../toolbox/component.js"
 import {makeScrollMarmot} from "../toolbox/make-scroll-marmot.js"
 
 const _scrollTop = Symbol("scrollTop")
@@ -27,12 +26,18 @@ export class MenuSystem extends Component {
 				outline: var(--focus-outline, 2px solid cyan);
 			}
 
-			[theme="concrete"] {
+			.system {
+				position: relative;
+			}
+
+			:host([sticky]) .system {
 				position: absolute;
 				width: 100%;
 				right: 0;
 				pointer-events: none;
+			}
 
+			[theme="concrete"] {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
