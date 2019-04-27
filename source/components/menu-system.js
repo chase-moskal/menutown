@@ -30,17 +30,17 @@ export class MenuSystem extends Component {
 				position: static;
 			}
 
-			:host([sticky]) .system {
-				position: absolute;
-				width: 100%;
-				right: 0;
-				pointer-events: none;
-			}
-
 			:host([theme="concrete"]) .system {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
+			}
+
+			:host([theme="concrete"][sticky]) .system {
+				position: absolute;
+				width: 100%;
+				right: 0;
+				pointer-events: none;
 			}
 
 			:host([theme="concrete"][lefty]) .system {
@@ -75,11 +75,14 @@ export class MenuSystem extends Component {
 				align-items: flex-end;
 				justify-content: flex-end;
 				padding: var(--menu-gapsize, 0.15rem);
-				margin-right: var(--menu-lanesize, 1rem);
 				background: var(--menu-backcolor, rgba(240, 240, 240, 0.5));
 			}
 
-			:host([theme="concrete"][lefty]) .list {
+			:host([theme="concrete"][sticky]) .list {
+				margin-right: var(--menu-lanesize, 1rem);
+			}
+
+			:host([theme="concrete"][sticky][lefty]) .list {
 				margin-right: unset;
 				margin-left: var(--menu-lanesize, 1rem);
 			}
