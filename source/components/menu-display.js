@@ -88,7 +88,7 @@ export class MenuDisplay extends Component {
 
 	render() {
 		return html`
-			<div class="menu">
+			<div class="display">
 				<button @click="${this[_handleButtonClick]}">
 					<slot name="button"></slot>
 				</button>
