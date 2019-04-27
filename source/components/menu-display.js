@@ -1,6 +1,9 @@
 
 import {Component, html, css} from "../toolbox/component.js"
 
+const _shadowRoot = Symbol("shadowRoot")
+const _handleButtonClick = Symbol("_handleButtonClick")
+
 export class MenuDisplay extends Component {
 	static get styles() {
 		return css`
@@ -11,7 +14,7 @@ export class MenuDisplay extends Component {
 			}
 
 			*:focus {
-				outline: var(--menu-outline, 2px solid cyan);
+				outline: var(--focus-outline, 2px solid #0af);
 			}
 
 			.menu > .panel {
@@ -59,17 +62,23 @@ export class MenuDisplay extends Component {
 		this.theme = ""
 		this.open = false
 		this.toggle = () => {}
-		this.handleButtonClick = () => this.toggle()
+		this[_handleButtonClick] = () => this.toggle()
 	}
 
 	createRenderRoot() {
-		return this.attachShadow({mode: "closed"})
+		this[_shadowRoot] = this.attachShadow({mode: "closed"})
+		return this[_shadowRoot]
+	}
+
+	updated(changedProperties) {
+		if (changedProperties.has("open") && this.open)
+			this[_shadowRoot].querySelector("button").focus()
 	}
 
 	render() {
 		return html`
 			<div class="menu" theme="${this.theme}" ?open="${this.open}">
-				<button @click="${this.handleButtonClick}">
+				<button @click="${this[_handleButtonClick]}">
 					<slot name="button"></slot>
 				</button>
 				<div class="panel">

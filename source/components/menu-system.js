@@ -24,7 +24,7 @@ export class MenuSystem extends Component {
 			}
 
 			*:focus {
-				outline: var(--menu-outline, 2px solid cyan);
+				outline: var(--focus-outline, 2px solid cyan);
 			}
 
 			[theme="concrete"] {
