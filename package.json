@@ -1,27 +1,23 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.22",
+	"version": "0.0.0-dev.23",
 	"description": "menu system ui infrastructure",
-	"main": "source/index.js",
-	"module": "source/index.js",
+	"license": "ISC",
+	"author": "Chase Moskal <chasemoskal@gmail.com>",
+	"type": "module",
+	"main": "dist/register-all.js",
+	"module": "dist/register-all.js",
 	"files": [
-		"dist",
-		"source"
+		"dist"
 	],
 	"scripts": {
 		"prepare": "run-s clean build test",
 		"clean": "rimraf dist && mkdirp dist",
-		"build": "importly < importly.config > dist/importmap.json",
+		"build": "run-p importmap copycode",
+		"importmap": "importly < importly.config > dist/importmap.json",
+		"copycode": "ncp source dist",
 		"test": "exit 0",
-		"start": "http-server"
-	},
-	"devDependencies": {
-		"http-server": "^0.11.1",
-		"importly": "0.0.0-dev.4",
-		"mkdirp": "^0.5.1",
-		"npm-run-all": "^4.1.5",
-		"octicons": "^8.5.0",
-		"rimraf": "^2.6.3"
+		"start": "serve"
 	},
 	"keywords": [
 		"menu",
@@ -33,10 +29,17 @@
 		"type": "git",
 		"url": "git+https://github.com/chase-moskal/menutown.git"
 	},
-	"author": "Chase Moskal <chasemoskal@gmail.com>",
-	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/chase-moskal/menutown/issues"
 	},
-	"homepage": "https://github.com/chase-moskal/menutown#readme"
+	"homepage": "https://github.com/chase-moskal/menutown#readme",
+	"devDependencies": {
+		"importly": "0.0.0-dev.4",
+		"mkdirp": "^0.5.1",
+		"ncp": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"octicons": "^8.5.0",
+		"rimraf": "^2.6.3",
+		"serve": "^11.0.2"
+	}
 }

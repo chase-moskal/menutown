@@ -1,6 +1,12 @@
 
 # menutown changelog
 
+## v0.0.0-dev.23 – 2019-06-27
+
+breaking
+- main module is now 'register-all.js'
+- source is no longer exposed in the package, use dist
+
 ## v0.0.0-dev.17 — 2019-04-26
 
 huge web components refactor
