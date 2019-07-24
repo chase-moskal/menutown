@@ -5,7 +5,11 @@
 			"label": "production build",
 			"type": "shell",
 			"command": "npm",
-			"args": ["install"]
+			"args": ["install"],
+			"group":{
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

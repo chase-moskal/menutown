@@ -96,6 +96,7 @@ export class MenuSystem extends Component {
 
 	static get properties() {
 		return {
+			["initially-hidden"]: {type: Boolean, reflect: true},
 			theme: {type: String, reflect: true},
 			lefty: {type: Boolean, reflect: true},
 			active: {type: Boolean, reflect: true},
@@ -169,6 +170,10 @@ export class MenuSystem extends Component {
 			display.toggle = () => this[_toggleIndex](index)
 			display.open = index === this[_activeIndex]
 		})
+	}
+
+	firstUpdated() {
+		this["initially-hidden"] = false
 	}
 
 	render() {
