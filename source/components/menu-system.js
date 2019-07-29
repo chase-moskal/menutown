@@ -28,6 +28,7 @@ export class MenuSystem extends Component {
 
 			.system {
 				position: static;
+				margin: var(--menu-margin, auto);
 			}
 
 			:host([theme="concrete"]) .system {
@@ -59,7 +60,7 @@ export class MenuSystem extends Component {
 				z-index: 0;
 				display: none;
 				position: fixed;
-				background: var(--menu-blanket-color, rgba(0,0,0, 0.5));
+				background: var(--menu-blanket-background, rgba(0,0,0, 0.5));
 				top: 0;
 				left: 0;
 				right: 0;
@@ -75,7 +76,7 @@ export class MenuSystem extends Component {
 				align-items: flex-end;
 				justify-content: flex-end;
 				padding: var(--menu-gapsize, 0.15rem);
-				background: var(--menu-backcolor, rgba(240, 240, 240, 0.5));
+				background: var(--menu-background, rgba(240, 240, 240, 0.5));
 			}
 
 			:host([theme="concrete"][sticky]) .list {

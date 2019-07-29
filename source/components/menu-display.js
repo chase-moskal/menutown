@@ -42,7 +42,7 @@ export class MenuDisplay extends Component {
 				max-width: calc(100% - calc(var(--menu-lanesize, 1rem) * 2));
 				margin-left: auto;
 				padding: var(--menu-panel-padding, 1rem);
-				background: var(--menu-panel-bgcolor, white);
+				background: var(--menu-panel-background, white);
 				border-radius: var(--menu-panel-border-radius, 0);
 				box-shadow: var(--menu-panel-box-shadow, none);
 			}

@@ -47,17 +47,18 @@ main > p + p {
 /*//////// DEFAULTS //////////
 
 menu-system {
+	--menu-margin: auto;
 	--menu-lanesize: 1rem;
 	--menu-gapsize: 0.15rem;
-	--menu-blanket-color: rgba(0,0,0, 0.5);
-	--menu-backcolor: rgba(240, 240, 240, 0.5);
+	--menu-background: rgba(240, 240, 240, 0.5);
+	--menu-blanket-background: rgba(0,0,0, 0.5);
 }
 
 menu-display {
 	--focus-outline: 2px solid cyan;
 	--menu-panel-padding: 1rem;
-	--menu-panel-bgcolor: white;
 	--menu-panel-box-shadow: none;
+	--menu-panel-background: white;
 	--menu-panel-border-radius: none;
 }
 
