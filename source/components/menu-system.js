@@ -148,22 +148,34 @@ export class MenuSystem extends Component {
 		return this[_shadowRoot]
 	}
 
-	connectedCallback() {
-		super.connectedCallback()
-		if (this.sticky && this.isConnected) {
+	_initScrollMarmot() {
+		if (this.sticky && !this[_scrollMarmot])
 			this[_scrollMarmot] = makeScrollMarmot({
 				onScrollUpdate: this[_updateScrollPoint]
 			})
+	}
+
+	_disposeScrollMarmot() {
+		if (this[_scrollMarmot]) {
+			this[_scrollMarmot].dispose()
+			this[_scrollMarmot] = null
 		}
+	}
+
+	connectedCallback() {
+		super.connectedCallback()
+		if (this.isConnected) this._initScrollMarmot()
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback()
-		if (this[_scrollMarmot]) this[_scrollMarmot].dispose()
-		this[_scrollMarmot] = null
+		this._disposeScrollMarmot()
 	}
 
 	updated() {
+		this._initScrollMarmot()
+		if (!this.sticky) this._disposeScrollMarmot()
+
 		this[_getMenuDisplays]().forEach((display, index) => {
 			display.theme = this.theme
 			display.lefty = this.lefty

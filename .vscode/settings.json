@@ -16,5 +16,12 @@
 
 	"search.exclude": {
 		"dist": true
-	}
+	},
+
+	"lit-plugin.skipUnknownTags": true,
+	"lit-plugin.skipUnknownAttributes": true,
+	"lit-plugin.skipUnknownProperties": true,
+	"lit-plugin.skipUnknownSlots": true,
+	"lit-plugin.skipMissingImports": true,
+	"lit-plugin.skipTypeChecking": true
 }
