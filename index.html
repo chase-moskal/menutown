@@ -4,11 +4,16 @@
 		<meta charset="utf-8"/>
 		<title>menutown proving grounds</title>
 		<link rel="stylesheet" href="source/demo.css"/>
+		<script type="importmap-shim" src="dist/importmap.json"></script>
+		<script type="module-shim" src="source/demo.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/@babel/polyfill@7.4.4/dist/polyfill.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.2.10/webcomponents-bundle.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/es-module-shims@0.2.15/dist/es-module-shims.js"></script>
 	</head>
 	<body>
 		<header class="siteheader">
 			<h1>menutown</h1>
-
 			<menu-system initially-hidden>
 				<menu-display>
 					<div slot="button">Alpha</div>
@@ -21,7 +26,6 @@
 					<p>menu panel bravo</p>
 				</menu-display>
 			</menu-system>
-
 		</header>
 		<main>
 			<p>Let's make a nice big leafy tree. The least little bit can do so much. Now it's beginning to make a little sense.</p>
@@ -52,8 +56,5 @@
 			<p>Use what happens naturally, don't fight it. Even the worst thing we can do here is good. You can bend rivers. But when I get home, the only thing I have power over is the garbage. This is probably the greatest thing to happen in my life - to be able to share this with you. Even trees need a friend. We all need friends.</p>
 			<p>It looks so good, I might as well not stop. Follow the lay of the land. It's most important. Anything you want to do you can do here. Everybody's different. Trees are different. Let them all be individuals. It's beautiful - and we haven't even done anything to it yet. All you need is a dream in your heart, and an almighty knife.</p>
 		</main>
-		<script type="importmap-shim" src="dist/importmap.json"></script>
-		<script type="module-shim" src="source/demo.js"></script>
-		<script src="https://unpkg.com/es-module-shims@0.2.3/dist/es-module-shims.js"></script>
 	</body>
 </html>

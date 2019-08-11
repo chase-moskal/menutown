@@ -1,6 +1,6 @@
 
 /dist
 /coverage
+/devdeploy
 /node_modules
 /*.tgz
-

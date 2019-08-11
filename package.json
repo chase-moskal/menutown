@@ -1,6 +1,6 @@
 {
 	"name": "menutown",
-	"version": "0.0.0-dev.26",
+	"version": "0.0.0-dev.27",
 	"description": "menu system ui infrastructure",
 	"license": "ISC",
 	"author": "Chase Moskal <chasemoskal@gmail.com>",
@@ -14,7 +14,7 @@
 		"prepare": "run-s clean build test",
 		"clean": "rimraf dist && mkdirp dist",
 		"build": "run-p importmap copycode",
-		"importmap": "importly < importly.config > dist/importmap.json",
+		"importmap": "importly < package.json > dist/importmap.json",
 		"copycode": "ncp source dist",
 		"test": "exit 0",
 		"start": "serve"
@@ -34,7 +34,7 @@
 	},
 	"homepage": "https://github.com/chase-moskal/menutown#readme",
 	"devDependencies": {
-		"importly": "0.0.0",
+		"importly": "0.1.0-dev.0",
 		"mkdirp": "^0.5.1",
 		"ncp": "^2.0.0",
 		"npm-run-all": "^4.1.5",

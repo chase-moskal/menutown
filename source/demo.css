@@ -81,3 +81,7 @@ menu-display [slot=button] {
 menu-display[open] [slot=button] {
 	opacity: 1;
 }
+
+menu-system [slot=button] {
+	cursor: pointer;
+}
