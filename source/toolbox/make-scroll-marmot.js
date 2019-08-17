@@ -2,10 +2,11 @@
 const scrollUpdateEvents = ["scroll", "resize"]
 
 export function makeScrollMarmot({onScrollUpdate}) {
-	let scrollTop = 0
-
 	function handleScrollUpdate() {
-		scrollTop = document.documentElement.scrollTop
+		const scrollTop = window.pageYOffset
+			|| document.documentElement.scrollTop
+			|| document.body.scrollTop
+			|| 0
 		onScrollUpdate(scrollTop)
 	}
 
