@@ -4,6 +4,9 @@ function dashify(camel) {
 }
 
 export function registerComponents(components) {
-	for (const Component of components)
-		customElements.define(dashify(Component.name), Component)
+	for (const componentName of Object.keys(components))
+		customElements.define(
+			dashify(componentName),
+			components[componentName]
+		)
 }
