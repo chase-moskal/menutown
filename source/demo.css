@@ -19,6 +19,12 @@ html, body {
 	font-size: 16px;
 }
 
+body {
+	position: relative;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
 .siteheader {
 	display: flex;
 	background: #444;

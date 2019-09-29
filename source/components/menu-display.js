@@ -45,6 +45,8 @@ export class MenuDisplay extends Component {
 				background: var(--menu-panel-background, white);
 				border-radius: var(--menu-panel-border-radius, 0);
 				box-shadow: var(--menu-panel-box-shadow, none);
+				backdrop-filter: var(--menu-panel-backdrop-filter, none);
+				--webkit-backdrop-filter: var(--menu-panel-backdrop-filter, none);
 			}
 
 			:host([theme="concrete"][sticky]) .panel {

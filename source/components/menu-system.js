@@ -155,6 +155,8 @@ export class MenuSystem extends Component {
 				display: none;
 				position: fixed;
 				background: var(--menu-blanket-background, rgba(0,0,0, 0.5));
+				backdrop-filter: var(--menu-blanket-backdrop-filter, blur(5px));
+				--webkit-backdrop-filter: var(--menu-blanket-backdrop-filter, blur(5px));
 				top: 0;
 				left: 0;
 				right: 0;
