@@ -40,6 +40,7 @@ export class MenuDisplay extends Component {
 				right: var(--menu-lanesize, 1rem);
 				width: var(--menu-panel-width, 480px);
 				max-width: calc(100% - calc(var(--menu-lanesize, 1rem) * 2));
+				margin-top: var(--menu-gapsize, 0.15rem);
 				margin-left: auto;
 				padding: var(--menu-panel-padding, 1rem);
 				background: var(--menu-panel-background, white);
