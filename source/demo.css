@@ -62,6 +62,7 @@ menu-system {
 
 menu-display {
 	--focus-outline: 2px solid cyan;
+	--menu-panel-width: 640px;
 	--menu-panel-padding: 1rem;
 	--menu-panel-box-shadow: none;
 	--menu-panel-background: white;

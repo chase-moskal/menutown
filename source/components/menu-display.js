@@ -38,7 +38,7 @@ export class MenuDisplay extends Component {
 				position: absolute;
 				left: var(--menu-lanesize, 1rem);
 				right: var(--menu-lanesize, 1rem);
-				width: var(--menu-panel-width, 480px);
+				width: var(--menu-panel-width, 640px);
 				max-width: calc(100% - calc(var(--menu-lanesize, 1rem) * 2));
 				margin-top: var(--menu-gapsize, 0.15rem);
 				margin-left: auto;
