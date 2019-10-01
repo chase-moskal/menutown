@@ -145,11 +145,6 @@ export class MenuSystem extends Component {
 				justify-content: flex-start;
 			}
 
-			:host([theme="concrete"]) .system * {
-				z-index: 1;
-				pointer-events: all;
-			}
-
 			:host([theme="concrete"]) .blanket {
 				z-index: 0;
 				display: none;
@@ -168,6 +163,9 @@ export class MenuSystem extends Component {
 			}
 
 			:host([theme="concrete"]) .list {
+				z-index: 1;
+				pointer-events: all;
+
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
