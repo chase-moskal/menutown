@@ -1,6 +1,7 @@
 
 import {MenuDisplay} from "./menu-display.js"
 import {Component, html, css} from "../toolbox/component.js"
+import {getEdgeVersion} from "../toolbox/get-edge-version.js"
 import {makeScrollMarmot} from "../toolbox/make-scroll-marmot.js"
 import {getAssignedElements} from "../toolbox/get-assigned-elements.js"
 
@@ -13,8 +14,9 @@ const _getMenuDisplays = Symbol("getMenuDisplays")
 const _updateScrollPoint = Symbol("updateScrollPoint")
 const _handleBlanketClick = Symbol("handleBlanketClick")
 
-export class MenuSystem extends Component {
+const isEdge17 = (getEdgeVersion() || "").startsWith("17.")
 
+export class MenuSystem extends Component {
 	static get properties() {
 		return {
 			["initially-hidden"]: {type: Boolean, reflect: true},
@@ -34,6 +36,7 @@ export class MenuSystem extends Component {
 		this.active = false
 		this.sticky = false
 		this.lefty = false
+		if (isEdge17) this.setAttribute("data-edge-17", "data-edge-17")
 
 		this[_activeIndex] = undefined
 		this[_scrollTop] = 0
@@ -135,7 +138,6 @@ export class MenuSystem extends Component {
 				position: absolute;
 				width: 100%;
 				right: 0;
-				pointer-events: none;
 			}
 
 			:host([theme="concrete"][lefty]) .system {
@@ -146,7 +148,7 @@ export class MenuSystem extends Component {
 			}
 
 			:host([theme="concrete"]) .blanket {
-				z-index: 0;
+				z-index: 99;
 				display: none;
 				position: fixed;
 				background: var(--menu-blanket-background, rgba(0,0,0, 0.5));
@@ -163,9 +165,7 @@ export class MenuSystem extends Component {
 			}
 
 			:host([theme="concrete"]) .list {
-				z-index: 1;
-				pointer-events: all;
-
+				z-index: 100;
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-end;
@@ -185,6 +185,19 @@ export class MenuSystem extends Component {
 			:host([theme="concrete"]) .list slot::slotted(menu-display) {
 				display: block;
 				flex: 0 0 auto;
+			}
+
+			/* gross edge 17 stuff we all want to forget about */
+
+			:host([data-edge-17][theme="concrete"]) .system {
+				z-index: 100;
+				position: absolute;
+				width: 100%;
+				right: 0;
+			}
+
+			:host([data-edge-17][theme="concrete"]) .blanket {
+				z-index: 0;
 			}
 		`
 	}
