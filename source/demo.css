@@ -25,6 +25,16 @@ body {
 	margin: 0 auto;
 }
 
+a {
+	color: lightskyblue;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: skyblue;
+	text-decoration: underline;
+}
+
 .siteheader {
 	display: flex;
 	background: #444;
