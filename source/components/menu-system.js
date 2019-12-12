@@ -135,9 +135,14 @@ export class MenuSystem extends Component {
 			}
 
 			:host([theme="concrete"][sticky]) .system {
+				pointer-events: none;
 				position: absolute;
 				width: 100%;
 				right: 0;
+			}
+
+			:host([theme="concrete"][sticky]) .system > * {
+				pointer-events: all;
 			}
 
 			:host([theme="concrete"][lefty]) .system {
